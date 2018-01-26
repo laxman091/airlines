@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Authentication Process...</title>
+<script type="text/javascript" src="jquery-1.6.1.min.js"></script>
+<script type="text/javascript">
+<script type="text/javascript">
+<!-- Login popup-->
+$(document).ready(function(){
+//open popup
+$("#pop2").click(function(){
+  $("#overlay_signup").fadeIn(1000);
+  positionPopup();
+});
+
+//close popup
+$("#close2").click(function(){
+	$("#overlay_signup").fadeOut(500);
+});
+});
+
+//position the popup at the center of the page
+function positionPopup(){
+  if(!$("#overlay_signup").is(':visible')){
+    return;
+  } 
+  $("#overlay_signup").css({
+      left: ($(window).width() - $('#overlay_signup').width()) / 2,
+      top: ($(window).width() - $('#overlay_singup').width()) / 7,
+      position:'absolute'
+  });
+}
+
+//maintain the popup at center of the page when browser resized
+$(window).bind('resize',positionPopup);
+
+</script>
+<style>
+#pop2{
+	display: block;
+	border: 1px solid gray;
+	width: 70px;
+	text-align: center;
+	padding: 6px;
+	border-radius: 5px;
+	text-decoration: none;
+	margin: 0 auto;
+}
+#overlay_signup{
+	position: absolute;
+	border: 5px solid gray;
+	padding: 10px;
+	background: white;
+	width: 270px;
+	height: 190px;
+}
+</style>
+<script>
+function chekempty()
+{
+if(document.getElementById('login')=='login')
+{
+alert('login button clicked');
+}
+elseif(document.getElementById('submit')== 'submit')
+{
+	alert('submit button clicked');
+}
+elseif{
+	alert('please select at least one user type...');
+}
+</script>
+</head>
+<body>
+
+<p>
+Welcome to ABC Airlines Pvt. Ltd.
+</p>
+<p>
+<br><br><br><br><br><br><br>
+</p>
+&nbsp;<a href="#" id="pop2" >Signup</a>
+<br />
+<form method='post' action='addmember.php' id='overlay_signup' style='display:none'>
+	<h2>Signup</h2>
+	<label>Username: </label><input type="text" name="user" /><br /><br />
+	<label>Password: </label><input type="password" name="pass" /><br /><br />
+	User Type:
+	<select name="utype" id="chkmember">
+	<option value="">Select</option>
+	<option value="admin">Admin</option>
+	<option value="branch">Branch</option>
+	<option value="agent">Agent</option>
+	</select>
+	<input type="submit" value="Submit" id="submit" onclick="chekempty()"/>
+	<a href="#" id="close2" >Close</a>
+</form>
+<br>
+
+
+</body>
+</html>

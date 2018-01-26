@@ -1,0 +1,230 @@
+<?php
+session_start();
+?>
+
+<?php
+    if(isset(isset($_SESSION['login_type'])) {
+			$logintype = $_SESSION['login_type'];
+        header('Location: $logintype.php');    
+    } 
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Authentication Process...</title>
+<script type="text/javascript" src="jquery-1.6.1.min.js"></script>
+<script type="text/javascript">
+<!-- Login popup-->
+$(document).ready(function(){
+//open popup
+$("#pop").click(function(){
+  $("#overlay_form").fadeIn(1000);
+  positionPopup();
+});
+
+//close popup
+$("#close").click(function(){
+	$("#overlay_form").fadeOut(500);
+});
+});
+
+//position the popup at the center of the page
+function positionPopup(){
+  if(!$("#overlay_form").is(':visible')){
+    return;
+  } 
+  $("#overlay_form").css({
+      left: ($(window).width() - $('#overlay_form').width()) / 2,
+      top: ($(window).width() - $('#overlay_form').width()) / 7,
+      position:'absolute'
+  });
+}
+
+//maintain the popup at center of the page when browser resized
+$(window).bind('resize',positionPopup);
+
+</script>
+<script type="text/javascript">
+<!-- Login popup-->
+$(document).ready(function(){
+//open popup
+$("#pop2").click(function(){
+  $("#overlay_signup").fadeIn(1000);
+  positionPopup();
+});
+
+//close popup
+$("#close2").click(function(){
+	$("#overlay_signup").fadeOut(500);
+});
+});
+
+//position the popup at the center of the page
+function positionPopup(){
+  if(!$("#overlay_signup").is(':visible')){
+    return;
+  } 
+  $("#overlay_signup").css({
+      left: ($(window).width() - $('#overlay_signup').width()) / 2,
+      top: ($(window).width() - $('#overlay_singup').width()) / 7,
+      position:'absolute'
+  });
+}
+
+//maintain the popup at center of the page when browser resized
+$(window).bind('resize',positionPopup);
+
+
+ function fun(val)
+ {
+  if(val=='branch')
+  {
+  //alert('branch');
+    $('#agentcombo').hide();
+	$('#branchcombo').show();
+    
+  }
+  else if(val=='agent')
+  { 
+  //alert('agent');
+  $('#branchcombo').hide();
+    $('#agentcombo').show();
+  }
+  else if(val=='admin')
+  { $('#branchcombo').hide();
+    $('#agentcombo').hide();
+  }
+ }
+ 
+</script>
+<style>
+#overlay_form{
+	position: absolute;
+	border: 5px solid gray;
+	padding: 10px;
+	background: yellow;
+	width: 270px;
+	height: 190px;
+}
+#pop{
+	display: block;
+	border: 1px solid gray;
+	width: 65px;
+	text-align: center;
+	padding: 6px;
+	border-radius: 5px;
+	text-decoration: none;
+	margin: 0 auto;
+}
+
+#pop2{
+	display: block;
+	border: 1px solid gray;
+	width: 70px;
+	text-align: center;
+	padding: 6px;
+	border-radius: 5px;
+	text-decoration: none;
+	margin: 0 auto;
+}
+#overlay_signup{
+	position: absolute;
+	border: 5px solid gray;
+	padding: 10px;
+	background: white;
+	width: 270px;
+	height: 190px;
+}
+</style>
+
+</head>
+<body>
+
+<p>
+Welcome to ABC Airlines Pvt. Ltd.
+</p>
+<p>
+<span style="text:center"><a href="../index.php">Home</a></span><br><br><br><br><br><br><br>
+</p>
+<a href="#" id="pop" >Login</a>&nbsp;<a href="#" id="pop2" >Signup</a>
+<br />
+<form method="post" action="check_login.php" id="overlay_form" style="display:none">
+	<h2> Login</h2>
+	<label>Username: </label><input type="text" name="user" required="required"/><br /><br />
+	<label>Password: </label><input type="password" name="pass" required="required" /><br /><br />
+	<select name="utype" onchange="fun(this.value)" >
+	<option value="admin" selected>Admin</option>
+	<option value="branch">Branch</option>
+	<option value="agent">Agent</option>
+	</select>
+<select id="branchcombo" style="display:none;">
+<option value="">Branch</option>
+        <option value="">Andhra Pradesh</option>
+		<option value="">Arunachal Pradesh</option>
+		<option value="">Assam</option>
+		<option value="">Bihar</option>
+		<option value="">Chhattisgarh</option>
+		<option value="">Goa</option>
+		<option value="">Gujarat</option>
+		<option value="">Haryana</option>
+		<option value="">Himachal Pradesh</option>
+		<option value="">Jammu & Kashmir</option>
+		<option value="">Jharkhand</option>
+		<option value="">Karnataka</option>
+		<option value="">Kerala</option>
+		<option value="">Madhya Pradesh</option>
+		<option value="">Maharashtra</option>
+		<option value="">Manipur</option>
+		<option value="">Punjab</option>
+		<option value="">Rajasthan</option>
+      
+    </select>
+	
+	    <select id="agentcombo" style="display:none;">
+		<option value="">Agent</option>
+        <option value="">Andhra Pradesh</option>
+		<option value="">Arunachal Pradesh</option>
+		<option value="">Assam</option>
+		<option value="">Bihar</option>
+		<option value="">Chhattisgarh</option>
+		<option value="">Goa</option>
+		<option value="">Gujarat</option>
+		<option value="">Haryana</option>
+		<option value="">Himachal Pradesh</option>
+		<option value="">Jammu & Kashmir</option>
+		<option value="">Jharkhand</option>
+		<option value="">Karnataka</option>
+		<option value="">Kerala</option>
+		<option value="">Madhya Pradesh</option>
+		<option value="">Maharashtra</option>
+		<option value="">Manipur</option>
+		<option value="">Punjab</option>
+		<option value="">Rajasthan</option>
+    </select>
+
+
+	<input type="submit" value="Login" id="login"/>
+	<a href="#" id="close" >Close</a>
+</form>
+<form method='post' action='addmember.php' id='overlay_signup' style='display:none'>
+	<h2>Signup</h2>
+	<label>Username: </label><input type="text" name="user" required="required" /><br /><br />
+	<label>Password: </label><input type="password" name="pass" required="required" /><br /><br />
+	User Type:
+	<select name="utype" id="chkmember">
+	<option value="">Select</option>
+	<option value="admin">Admin</option>
+	<option value="branch">Branch</option>
+	<option value="agent">Agent</option>
+	</select>
+
+	<input type="submit" value="Submit" id="submit"/>
+	<a href="#" id="close2" >Close</a>
+</form>
+<br>
+<br>
+
+</body>
+
+</html>
